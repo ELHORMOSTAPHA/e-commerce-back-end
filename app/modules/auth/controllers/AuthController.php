@@ -9,38 +9,22 @@ class AuthController extends STA_Controller{
     }
     public function login()
     {
-        $username = $this->input->post('username', TRUE);
-        $password = $this->input->post('password', TRUE);
+        if ($this->input->post(NULL, TRUE)) {
+            $username = $this->input->post('username', TRUE);
+            $password = $this->input->post('password', TRUE);
 
-        // check username and password
-        $this->db->select('users.id,users.token,users.profile_id,users.username,users.password,users.first_name,users.last_name,users.email,users.phone,profiles.name,profiles.name as role,
-        users.concession_id,users.site_id')
-            ->join('profiles', 'profiles.id = users.profile_id')
-            ->where('username', $username)
-            ->where('status', '1');
-        $query = $this->db->get('users');
+            if (!empty($username) && !empty($password)) {
 
-        // check total number results
-        $num = $query->num_rows();
-        if ($num > 0) {
-            $user = $query->first_row();
-            if (!password_verify($password, $user->password)) {
-                return false;
+                if ($this->auth->login()) {
+                    echo json_encode(array("status" => "success"));
+                } else {
+                    echo json_encode(array("status" => "error1"));
+                }
             } else {
-                // user connected successfully
-                $this->setLogedUser($user->id);
-                $filename =  filterString($user->first_name . '-' . $user->last_name . '-' . $user->id);
-                if (file_exists('public/assets/media/users/' . $filename . '-vignette.jpg')) :
-                    $user->avatar =  $filename . '-vignette.jpg';
-                else :
-                    $user->avatar = 'default.jpg';
-                endif;
-                //create session user
-                $this->session->set_userdata('userSession', $user);
-                return true;
+                echo json_encode(array("status" => "error2"));;
             }
         } else {
-            return false;
+            echo json_encode(array("status" => "error3"));
         }
     }
     public function test(){

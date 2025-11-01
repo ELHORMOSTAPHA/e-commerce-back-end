@@ -69,7 +69,6 @@
 		}
   </style>
   <div class="flex items-center justify-center grow bg-center bg-no-repeat page-bg">
-    <form method="post" action="http://localhost/e-commerce-back-end/login"><button type="submit">click</button></form>
 
    <div class="kt-card max-w-[370px] w-full">
     <form action="" class="kt-card-content flex flex-col gap-5 p-10" id="sign_in_form" method="post">
@@ -154,6 +153,11 @@
   <script src="<?= base_url()?>/public/assets/vendors/ktui/ktui.min.js">
   </script>
   <script src="<?= base_url()?>/public/assets/vendors/apexcharts/apexcharts.min.js">
+  </script>
+   <script defer src="<?= base_url()?>/public/assets/js/jquery-3.7.1.min.js">
+  </script>
+  <!-- authentication -->
+  <script defer src="<?= base_url()?>/public/assets/js/customs/auth/auth.js">
   </script>
   <!-- End of Scripts -->
  </body>

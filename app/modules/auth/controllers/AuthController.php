@@ -4,8 +4,14 @@ class AuthController extends STA_Controller{
         parent::__construct();
         $this->load->model('AuthModel','auth');
     }
-    public function index(){
-        $this->load->view('index');
+    public function index()
+    {
+        if ($this->session->userSession) {
+            return redirect(base_url() . "dashboard", 'location', 301);
+        }
+        //echo password_hash('ass919', PASSWORD_DEFAULT),
+        $data['jsOutput'] = "";
+        $this->load->view("index", $data);
     }
     public function login()
     {
@@ -21,7 +27,7 @@ class AuthController extends STA_Controller{
                     echo json_encode(array("status" => "error1"));
                 }
             } else {
-                echo json_encode(array("status" => "error2"));;
+                echo json_encode(array("status" => "user not"));;
             }
         } else {
             echo json_encode(array("status" => "error3"));

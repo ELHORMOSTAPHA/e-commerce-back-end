@@ -1,5 +1,5 @@
+<script>
 $(document).ready(function(){
-    console.log('ready baby')
     const submitBtn = $('#submit');
     const submitText = $('#submit-text');
     const submitSpinner = $('#submit-spinner');
@@ -27,7 +27,7 @@ $(document).ready(function(){
                         window.location.href += 'dashboard';
                     } else {
                         // Show error message
-                        alert('Login failed: ' + result.status);
+                        console.log('Login failed: ' + result.status)
                         resetButton();
                     }
                 } catch(e) {
@@ -50,3 +50,5 @@ $(document).ready(function(){
         submitSpinner.addClass('hidden');
     }
 })
+
+</script>

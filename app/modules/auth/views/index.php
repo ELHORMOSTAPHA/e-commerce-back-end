@@ -71,7 +71,7 @@
   <div class="flex items-center justify-center grow bg-center bg-no-repeat page-bg">
 
    <div class="kt-card max-w-[370px] w-full">
-    <form action="" class="kt-card-content flex flex-col gap-5 p-10" id="sign_in_form" method="post">
+    <form action="<?= base_url("/auth/AuthController/login")?>" class="kt-card-content flex flex-col gap-5 p-10" id="sign_in_form" method="post">
      <div class="text-center mb-2.5">
       <h3 class="text-lg font-medium text-mono leading-none mb-2.5">
        Sign in
@@ -109,7 +109,7 @@
       <label class="kt-form-label font-normal text-mono">
        Email
       </label>
-      <input class="kt-input" placeholder="email@email.com" type="text" value=""/>
+      <input class="kt-input" name="username" placeholder="email@email.com" type="text" value=""/>
      </div>
      <div class="flex flex-col gap-1">
       <div class="flex items-center justify-between gap-1">
@@ -121,7 +121,7 @@
        </a>
       </div>
       <div class="kt-input" data-kt-toggle-password="true">
-       <input name="user_password" placeholder="Enter Password" type="password" value=""/>
+       <input name="password" placeholder="Enter Password" type="password" value=""/>
        <button class="kt-btn kt-btn-sm kt-btn-ghost kt-btn-icon bg-transparent! -me-1.5" data-kt-toggle-password-trigger="true" type="button">
         <span class="kt-toggle-password-active:hidden">
          <i class="ki-filled ki-eye text-muted-foreground">
@@ -136,12 +136,16 @@
      </div>
      <label class="kt-label">
       <input class="kt-checkbox kt-checkbox-sm" name="check" type="checkbox" value="1"/>
-      <span class="kt-checkbox-label">
+      <span class="kt-checkbox-label" id="span">
        Remember me
       </span>
      </label>
-     <button class="kt-btn kt-btn-primary flex justify-center grow" type="submit">
-      Sign In
+     <button type="submit" id="submit" class="kt-btn kt-btn-primary flex justify-center grow items-center" >
+      <span id="submit-text">Sign In</span>
+      <svg id="submit-spinner" class="mr-3 size-5 animate-spin hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      </svg>
      </button>
     </form>
    </div>
@@ -154,11 +158,10 @@
   </script>
   <script src="<?= base_url()?>/public/assets/vendors/apexcharts/apexcharts.min.js">
   </script>
-   <script defer src="<?= base_url()?>/public/assets/js/jquery-3.7.1.min.js">
+   <script  src="<?= base_url()?>/public/assets/js/jquery-3.7.1.min.js">
   </script>
   <!-- authentication -->
-  <script defer src="<?= base_url()?>/public/assets/js/customs/auth/auth.js">
-  </script>
+  <?php $this->load->view("auth/auth/login")?>
   <!-- End of Scripts -->
  </body>
 </html>

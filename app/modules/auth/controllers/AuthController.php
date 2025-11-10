@@ -33,6 +33,28 @@ class AuthController extends STA_Controller{
             echo json_encode(array("status" => "error3"));
         }
     }
+    public function Singup()
+    {
+        if ($this->input->post(NULL, TRUE)) {
+            $username = $this->input->post('username', TRUE);
+            $password = $this->input->post('password', TRUE);
+            $password = $this->input->post('role_id', TRUE);
+            $password = $this->input->post('first_name', TRUE);
+            $password = $this->input->post('last_name', TRUE);
+            $password = $this->input->post('phone', TRUE);
+            if (!empty($username) && !empty($password)) {
+                if ($this->auth->login()) {
+                    echo json_encode(array("status" => "success"));
+                } else {
+                    echo json_encode(array("status" => "error1"));
+                }
+            } else {
+                echo json_encode(array("status" => "user not"));;
+            }
+        } else {
+            echo json_encode(array("status" => "error3"));
+        }
+    }
     public function test(){
         $this->load->database();
         if ($this->db->conn_id) {
@@ -40,5 +62,12 @@ class AuthController extends STA_Controller{
         } else {
             echo "Failed to connect database!";
         }
+    }
+     public function logout()
+    {
+        if ($this->session->has_userdata('userSession')) :
+            session_destroy();
+        endif;
+        redirect(base_url(), 'location', 301);
     }
 }

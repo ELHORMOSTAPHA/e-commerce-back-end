@@ -68,6 +68,8 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
 				document.documentElement.classList.add(themeMode);
 			}
   </script>
+  <script  src="<?= base_url()?>/public/assets/js/jquery-3.7.1.min.js">
+  </script>
   <!-- End of Theme Mode -->
   <!-- Page -->
   <!-- Main -->
@@ -1434,6 +1436,7 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
   </div>
   <!-- End of Page -->
   <!-- Scripts -->
+   
   <script src="<?= base_url()?>public/assets/js/core.bundle.js">
   </script>
   <script src="<?= base_url()?>public/assets/vendors/ktui/ktui.min.js">
@@ -1442,8 +1445,10 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
   </script>
   <script src="<?= base_url()?>public/assets/js/widgets/general.js">
   </script>
+ </script>
   <script src="<?= base_url()?>public/assets/js/layouts/demo1.js">
   </script>
+   
   <!-- End of Scripts -->
  </body>
 </html>
